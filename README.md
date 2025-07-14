@@ -23,7 +23,7 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 To install packages:
 
 ```bash
-npm i
+npm i or npm i --force
 ```
 
 To start a local development server, run:
