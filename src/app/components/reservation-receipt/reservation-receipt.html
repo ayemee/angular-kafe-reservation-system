@@ -1,0 +1,10 @@
+<div class="card p-4 shadow-sm" *ngIf="reservationData">
+    <p><strong>Date & Time:</strong> {{ `${reservationData.date.month}/${reservationData.date.day}/${reservationData.date.year}` }}</p>
+    <p><strong>Party Size:</strong> {{ reservationData.partySize }}</p>
+    <p><strong>Area:</strong> {{ reservationData.area }}</p>
+    <p><strong>Name:</strong> {{ reservationData.name }}</p>
+    <p><strong>Email:</strong> {{ reservationData.email }}</p>
+    <p><strong>Phone:</strong> {{ reservationData.phone }}</p>
+    <p><strong>With Children:</strong> {{ reservationData.allowChildren ? 'Yes' : 'No' }}</p>
+    <p><strong>Smoking:</strong> {{ reservationData.allowSmoking ? 'Yes' : 'No' }}</p>
+</div>

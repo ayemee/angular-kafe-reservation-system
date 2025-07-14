@@ -1,0 +1,12 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Reservation Confirmed 🎉🥳</h2>
+
+  <ng-container *ngIf="reservation$ | async as reservation">
+      <app-reservation-receipt [reservationData]="reservation" />
+  </ng-container>
+
+  <div class="mt-4">
+    <a (click)="resetAndNavigateToHome()" class="btn btn-secondary me-2">Back to Home</a>
+    <a (click)="resetAndNavigateToReservation()" class="btn btn-primary">Make Another Reservation</a>
+  </div>
+</div>

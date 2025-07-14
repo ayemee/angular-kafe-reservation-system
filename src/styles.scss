@@ -1,1 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'bootstrap/scss/bootstrap';
+
+[data-bs-theme="dark"] {
+  --bs-body-bg: #1c1108;
+  --bs-body-color: #eee;
+  --bs-primary: #c88b66;
+
+  //override navs to use theme color
+  .nav {
+      --bs-nav-link-color: #eee;
+      --bs-link-color: #eee;
+  }
+  .nav-link:hover, .nav-link:focus {
+    color: #c88b66;
+  }
+
+  //override all primary buttons to use theme color
+  .btn-link {
+    --bs-btn-color: $color-light;
+  }
+  .btn-primary {
+    --bs-btn-border-color: #f9b973;
+    --bs-btn-bg: #943320;
+  }
+
+  .btn:hover {
+    --bs-btn-border-color: #943320;
+    --bs-btn-bg: #f9b973;
+    border-color: #943320;
+    background-color: #f9b973;
+    color: #000;
+  }
+
+  //override default checkbox color
+  .form-check-input:checked {
+    border-color: #943320;
+    background-color: #f9b973;
+  }
+
+  //override calendar color to match theme
+  .ngb-dp-week{
+    --bs-info: #f9b973;
+  }
+}

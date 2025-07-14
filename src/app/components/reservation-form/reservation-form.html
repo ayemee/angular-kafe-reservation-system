@@ -1,0 +1,94 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="row">
+        <div class="col-md-12 mt-3">
+            <label class="mt-3">Select Time</label>
+            <ngb-timepicker
+                formControlName="time"
+                [spinners]="true"
+                [seconds]="false"
+                [minuteStep]="30"
+                required>
+            </ngb-timepicker>
+            <div *ngIf="form.get('time')?.touched && form.get('time')?.invalid" class="text-danger">
+                <div *ngIf="form.get('time')?.errors?.['required']">Time is required.</div>
+                <div *ngIf="form.get('time')?.errors?.['invalidTime']">Select a valid time between 18:00 and 21:30 (30-min intervals).</div>
+            </div>
+            <label>Select Date</label>
+            <div>
+                <ngb-datepicker formControlName="date" [startDate]="startDate" [minDate]="minDate" required></ngb-datepicker>
+                <div *ngIf="form.get('date')?.touched && form.get('date')?.invalid" class="text-danger">
+                    <div *ngIf="form.get('date')?.errors?.['required']">Date is required.</div>
+                    <div *ngIf="form.get('date')?.errors?.['invalidDate']">Date must be between July 24 and July 31.</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 mt-3">
+            <input type="checkbox" class="form-check-input" formControlName="allowChildren">
+            <label class="form-check-label ms-2" for="children">Children in the party</label>
+        </div>
+        <div class="col-md-12 mt-3">
+            <input type="checkbox" class="form-check-input" formControlName="allowSmoking">
+            <label class="form-check-label ms-2" for="smoke">Smoking preference</label>
+        </div>
+        <div class="col-md-6 mt-3">
+            <label>Party Size</label>
+            <input type="number" class="form-control" formControlName="partySize" min="1" max="12" required>
+            <div *ngIf="form.get('partySize')?.touched && form.get('partySize')?.invalid" class="text-danger">
+                <div *ngIf="form.get('partySize')?.errors?.['required']">Party size is required.</div>
+                <div *ngIf="form.get('partySize')?.errors?.['min']">Must be at least 1 person.</div>
+                <div *ngIf="form.get('partySize')?.errors?.['max']">Cannot exceed 12 people.</div>
+            </div>
+        </div>
+        <div class="col-md-6 mt-3">
+            <label>Area Preference</label>
+            <select class="form-select" formControlName="area" required>
+                @for(area of areas; track $index) {
+                    <option
+                        [value]="area.name">
+                        {{ area.name }}
+                    </option>
+                }
+            </select>
+            <div *ngIf="form.get('area')?.touched && form.get('area')?.invalid" class="text-danger">
+                <div *ngIf="form.get('area')?.errors?.['required']">Area is required.</div>
+            </div>
+            <div *ngIf="form.errors?.['partyTooLarge']" class="text-danger">
+                Party too large for selected area (max: {{ form.errors?.['partyTooLarge'].allowed }})
+            </div>
+            <div *ngIf="form.errors?.['childrenNotAllowed']" class="text-danger">
+                Children are not allowed in the selected area.
+            </div>
+            <div *ngIf="form.errors?.['smokingNotAllowed']" class="text-danger">
+                Smoking is not allowed in the selected area.
+            </div>
+        </div>
+        <div class="col-md-4 mt-3">
+            <label>Full Name</label>
+            <input type="text" class="form-control" formControlName="name" required>
+            <div *ngIf="form.get('name')?.touched && form.get('name')?.invalid" class="text-danger">
+                <div *ngIf="form.get('name')?.errors?.['required']">Name is required.</div>
+            </div>
+        </div>
+        <div class="col-md-4 mt-3">
+            <label>Email</label>
+            <input type="email" class="form-control" formControlName="email" required>
+            <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid" class="text-danger">
+                <div *ngIf="form.get('email')?.errors?.['required']">Email is required.</div>
+                <div *ngIf="form.get('email')?.errors?.['email']">Please enter a valid email address.</div>
+            </div>
+        </div>
+        <div class="col-md-4 mt-3">
+            <label>Phone Number</label>
+            <input type="tel" class="form-control" formControlName="phone" required>
+            <div *ngIf="form.get('phone')?.touched && form.get('phone')?.invalid" class="text-danger">
+                <div *ngIf="form.get('phone')?.errors?.['required']">Phone number is required.</div>
+                <div *ngIf="form.get('phone')?.errors?.['pattern']">
+                    Invalid phone number format. Only digits, +, -, spaces, and parentheses are allowed.
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mt-3">
+            <button type="submit" class="btn btn-primary mt-3">Submit Reservation</button>
+        </div>
+    </div>
+</form>
