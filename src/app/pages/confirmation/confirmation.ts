@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { ReservationFacade } from '../../store/reservation.facade';
@@ -9,7 +9,7 @@ import { ReservationReceipt } from '../../components/reservation-receipt/reserva
 
 @Component({
   selector: 'app-confirmation',
-  imports: [CommonModule, RouterLink, ReservationReceipt],
+  imports: [CommonModule, ReservationReceipt],
   templateUrl: './confirmation.html',
   styleUrl: './confirmation.scss'
 })
